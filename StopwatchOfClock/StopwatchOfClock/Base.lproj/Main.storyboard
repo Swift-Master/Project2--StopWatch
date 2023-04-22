@@ -26,7 +26,12 @@
                                 <rect key="frame" x="244" y="363.66666666666669" width="40" height="33"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="Start"/>
+                                <state key="normal" title="Start">
+                                    <color key="titleColor" systemColor="systemGreenColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="clickStartButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oh0-Lt-CoP"/>
+                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="b9g-25-dDu">
                                 <rect key="frame" x="16" y="466.66666666666674" width="361" height="351.33333333333326"/>
@@ -63,10 +68,6 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="nDf-Mq-92p"/>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="3GW-q5-aPt"/>
-                                </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LapTime" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Feg-J2-XqX">
                                 <rect key="frame" x="219.66666666666666" y="132.66666666666666" width="64.333333333333343" height="20.333333333333343"/>
@@ -74,18 +75,29 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Du-8L-lg2">
-                                <rect key="frame" x="109" y="363.66666666666669" width="46" height="33"/>
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Du-8L-lg2">
+                                <rect key="frame" x="109" y="363.66666666666669" width="30" height="33"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="Reset">
-                                    <color key="titleColor" systemColor="systemGreenColor"/>
+                                <state key="normal" title="Lap">
+                                    <color key="titleColor" systemColor="labelColor"/>
                                 </state>
+                                <state key="disabled">
+                                    <color key="titleColor" systemColor="systemGray5Color"/>
+                                </state>
+                                <state key="selected">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                </state>
+                                <state key="highlighted" title="Lap"/>
+                                <connections>
+                                    <action selector="clickRecordButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2et-k2-ZRD"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="b9g-25-dDu" firstAttribute="top" secondItem="1Du-8L-lg2" secondAttribute="bottom" constant="70" id="BNQ-CJ-A6W"/>
                             <constraint firstItem="wXM-dD-ppp" firstAttribute="top" secondItem="Feg-J2-XqX" secondAttribute="bottom" constant="10" id="FoE-w2-EU3"/>
                             <constraint firstItem="ouE-oj-cTc" firstAttribute="top" secondItem="wXM-dD-ppp" secondAttribute="bottom" constant="160" id="G5Q-pO-Y6I"/>
                             <constraint firstItem="b9g-25-dDu" firstAttribute="top" secondItem="ouE-oj-cTc" secondAttribute="bottom" constant="70" id="GdT-u2-nuh"/>
@@ -101,6 +113,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="StopWatch" id="NnH-Ii-z75"/>
+                    <connections>
+                        <outlet property="lapTimeLabel" destination="Feg-J2-XqX" id="GRZ-R6-ZSA"/>
+                        <outlet property="recordButton" destination="1Du-8L-lg2" id="l45-0q-9Es"/>
+                        <outlet property="startButton" destination="ouE-oj-cTc" id="VmU-c2-h5d"/>
+                        <outlet property="totalTimeLabel" destination="wXM-dD-ppp" id="wpD-6C-Zx8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -130,8 +148,14 @@
         </scene>
     </scenes>
     <resources>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
