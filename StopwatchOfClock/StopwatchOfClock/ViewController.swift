@@ -11,6 +11,7 @@ final class ViewController: UIViewController {
     
     var totalTimer : BackgroundTimer?
     var lapTimer : BackgroundTimer?
+    var lapTimes : [String?] = []
     var totalTime : Double = 0.00
     var lapTime : Double = 0.00
     
@@ -80,13 +81,14 @@ final class ViewController: UIViewController {
         
         if recordButton.titleLabel?.text == "Lap" {
             //테이블 뷰에 랩타입 기록
-            
             // 랩타임 기록 라벨 00:00.00으로 초기화
             lapTimer?.suspend()
             DispatchQueue.main.async {[self] in
                 let minute = Int(lapTime) / 60
                 let second = lapTime - Double(minute) * 60
                 lapTimeLabel.text = String(format:"%02d:%05.2f",minute,second)
+                lapTimes.append(lapTimeLabel.text)
+                laptimeRecordTable.reloadData()
                 lapTime = 0.00
                 lapTimer?.resume()
             }
@@ -106,9 +108,12 @@ final class ViewController: UIViewController {
                 lapTime = 0.00
                 lapTimeLabel.text = "00:00.00"
                 lapTimer = nil
+                lapTimes.removeAll()
+                laptimeRecordTable.reloadData()
             }
     
             // 테이블 셀 데이터 전부 제거
+            
         }
         
     }
@@ -116,3 +121,21 @@ final class ViewController: UIViewController {
     
 }
 
+extension ViewController : UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return lapTimes.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cellId = "cellId"
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
+        if let indexLabel = cell.viewWithTag(1) as? UILabel {
+            indexLabel.text = "Lap \(lapTimes.count - indexPath.row)"
+        }
+        if let lapTimeLabel = cell.viewWithTag(2) as? UILabel {
+            lapTimeLabel.text = lapTimes[lapTimes.count - indexPath.row - 1]
+        }
+        
+        return cell
+    }
+}
