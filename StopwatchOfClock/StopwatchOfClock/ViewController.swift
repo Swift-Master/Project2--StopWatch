@@ -7,8 +7,12 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+final class ViewController: UIViewController {
+    
+    var totalTimer : BackgroundTimer?
+    var lapTimer : BackgroundTimer?
+    var totalTime : Double = 0.00
+    var lapTime : Double = 0.00
     
     @IBOutlet weak var totalTimeLabel: UILabel!
     
@@ -18,11 +22,13 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var recordButton: UIButton!
     
-//    @IBOutlet weak var laptimeRecordTable: UITableView!
+    @IBOutlet weak var laptimeRecordTable: UITableView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        totalTimeLabel.text = "00:00.00"
+        lapTimeLabel.text = "00:00.00"
         // Do any additional setup after loading the view.
     }
 
@@ -35,12 +41,38 @@ class ViewController: UIViewController {
             recordButton.setTitle("Lap", for: .normal)
             
             // 각 라벨에 시간 기록 시작
+            if totalTimer == nil {
+                totalTimer = BackgroundTimer(with: 10,handler: {[weak self] in
+                    guard let self = self else {return}
+                    self.totalTime += 0.01
+                    let minute = Int(self.totalTime) / 60
+                    let second = self.totalTime - Double(minute) * 60
+                    DispatchQueue.main.async {
+                        self.totalTimeLabel.text = String(format:"%02d:%05.2f",minute,second)
+                    }
+                })
+                lapTimer = BackgroundTimer(with: 10,handler: {[weak self] in
+                    guard let self = self else {return}
+                    self.lapTime += 0.01
+                    let minute = Int(self.lapTime) / 60
+                    let second = self.lapTime - Double(minute) * 60
+                    DispatchQueue.main.async {
+                        self.lapTimeLabel.text = String(format:"%02d:%05.2f",minute,second)
+                    }
+                })
+                totalTimer?.activate()
+                lapTimer?.activate()
+            }else {
+                totalTimer?.resume()
+                lapTimer?.resume()
+            }
         }else {
             startButton.setTitle("Start", for: .normal)
             startButton.setTitleColor(.systemGreen, for: .normal)
             recordButton.setTitle("Reset", for: .normal)
-            
             // 시간 기록 정지
+            totalTimer?.suspend()
+            lapTimer?.suspend()
         }
     }
     
@@ -50,12 +82,32 @@ class ViewController: UIViewController {
             //테이블 뷰에 랩타입 기록
             
             // 랩타임 기록 라벨 00:00.00으로 초기화
+            lapTimer?.suspend()
+            DispatchQueue.main.async {[self] in
+                let minute = Int(lapTime) / 60
+                let second = lapTime - Double(minute) * 60
+                lapTimeLabel.text = String(format:"%02d:%05.2f",minute,second)
+                lapTime = 0.00
+                lapTimer?.resume()
+            }
+            
             
         }else {
             recordButton.isEnabled = false
             recordButton.setTitle("Lap", for: .disabled)
             // 랩타임, 전체시간 기록 라벨 00:00.00으로 초기화
-            
+                        
+            DispatchQueue.main.async {[self] in
+                totalTime = 0.00
+                totalTimeLabel.text = "00:00.00"
+                totalTimer = nil
+            }
+            DispatchQueue.main.async {[self] in
+                lapTime = 0.00
+                lapTimeLabel.text = "00:00.00"
+                lapTimer = nil
+            }
+    
             // 테이블 셀 데이터 전부 제거
         }
         

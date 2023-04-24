@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WholeTime" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="34" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wXM-dD-ppp">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WholeTime" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wXM-dD-ppp">
                                 <rect key="frame" x="109" y="163" width="175" height="40.666666666666657"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
                                 <nil key="textColor"/>
@@ -68,8 +68,12 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="uTE-HZ-jak"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="ziB-nx-z1U"/>
+                                </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LapTime" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Feg-J2-XqX">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LapTime" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Feg-J2-XqX">
                                 <rect key="frame" x="219.66666666666666" y="132.66666666666666" width="64.333333333333343" height="20.333333333333343"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -115,6 +119,7 @@
                     <navigationItem key="navigationItem" title="StopWatch" id="NnH-Ii-z75"/>
                     <connections>
                         <outlet property="lapTimeLabel" destination="Feg-J2-XqX" id="GRZ-R6-ZSA"/>
+                        <outlet property="laptimeRecordTable" destination="b9g-25-dDu" id="0Uk-Hh-kei"/>
                         <outlet property="recordButton" destination="1Du-8L-lg2" id="l45-0q-9Es"/>
                         <outlet property="startButton" destination="ouE-oj-cTc" id="VmU-c2-h5d"/>
                         <outlet property="totalTimeLabel" destination="wXM-dD-ppp" id="wpD-6C-Zx8"/>
