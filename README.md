@@ -1,36 +1,41 @@
-## 프로젝트 2 : GoodAsOldPhones
+## 프로젝트 2 : Stopwatch
 
-ios 기본 제공 시계앱의 스톱워치를 구현하며 연습해보는 앱입니다.
+### 1st Commit : 화면 레이아웃 설정 및 버튼 동작 구현
+#### 날짜 : 2023.04.22
 
-이 앱의 레퍼런스는 [soapyigu의 Swift-30-Projects](https://github.com/soapyigu/Swift-30-Projects/tree/master/Project%2002%20-%20Stopwatch)입니다.
+#### 구현사항
+- 화면 레이아웃 설정
+    - 스토리보드로 작업
+- 버튼 동작 구현
+    - 선택시 버튼의 title 및 color가 변경되도록 함.
 
-기본 기능을 모두 구현했다면, 디자인 및 추가 기능 구현은 자유롭게 해주세요.
+### 2nd Commit : 스톱워치 기능 구현
+#### 날짜 : 2023.04.24
 
-## 가이드
+#### 구현사항
+- BackgroundTimer Class 구현
+    - main run loop에서 동작하는 NSObject의 Timer 클래스 대신 다른 쓰레드에서 동작하는 DispatchSourceTimer 클래스를 구현하는 BackgroundTimer Class 생성
+    - ViewController에서 버튼 이벤트마다 알맞은 타이머 동작(정지,시작,종료) 구현
 
-영상 가이드는 [코드스쿼드 pr연습](https://www.youtube.com/watch?v=lFinZfu3QO0)을 참조해주세요.
+### 3rd Commit : 랩타임 테이블 뷰 구현
+#### 날짜 : 2023.04.25
 
-1. 본인 이름으로 브랜치(ex: PAKA)를 생성한 후, 자신의 레포로 fork해주세요.
+#### 구현사항
+- 테이블뷰 구현
+    - 스토리보드 상에서 delegate,datasource 최상위 뷰 연결
+    - UITableViewCell 의 Identifier 및 subView의 ViewTag 설정을 통한 셀 UI 적용
+    - 랩 타임 기록 및 초기화 로직 구현
 
-2. fork 한 레포에서 기능 또는 화면 단위로 새 브랜치(ex: pr1)를 생성 후 작업 및 커밋합니다. 
+### 4th Commit : 코드 리팩토링
+#### 날짜 : 2023.04.26
 
-3. 커밋했던 브랜치(pr1)에서 자신의 이름 브랜치(PAKA)로 PR을 올려주세요.
+#### 구현사항
+- 전체 코드 정비
+    - 버튼 Constraint 재설정 : 기존 totalTimeLabel와의 Constraint를 safeLayoutGuide로 변경.
+    - 공통되는 로직 함수로 분리
+    - 주석 작성 및 변수명, 함수명 수정
 
-4. 코드 리뷰를 받고 모든 수정사항을 반영한 후 `squash and merge` 옵션으로 자신의 브랜치에 merge해주세요.
+### 실행화면
 
-5. merge했던 브랜치(pr1)에서 fork한 레포의 main 브랜치로 checkout후 해당 브랜치(pr1)를 삭제합니다.
+![Stopwatch](./newStopwatch.gif)
 
-6. 다음 명령어들을 순차적으로 실행합니다.
-
-```
-    git remote add upstream https://github.com/Swift-Master/Project1-GoodAsOldPhones
-    
-    git fetch upstream `본인의 브랜치명(ex:PAKA)`
-    
-    git rebase upstream `upstream/본인의브랜치명(ex:PAKA)`
-```
-
-7. 2번으로 돌아가 새로운 작업을 반복합니다.
-
-## 실제 화면
-![Stopwatch](./Stopwatch.gif)
