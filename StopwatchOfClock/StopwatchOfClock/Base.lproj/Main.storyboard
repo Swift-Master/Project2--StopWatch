@@ -23,7 +23,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="357.66666666666669"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="WKx-cd-xfD">
-                                                <rect key="frame" x="114" y="59.999999999999986" width="165" height="188.66666666666663"/>
+                                                <rect key="frame" x="114" y="60.000000000000014" width="165" height="200.33333333333337"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDz-a1-OQn">
                                                         <rect key="frame" x="0.0" y="0.0" width="165" height="20.333333333333332"/>
@@ -31,14 +31,14 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c7y-a5-gqK">
-                                                        <rect key="frame" x="0.0" y="20.333333333333343" width="165" height="48"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c7y-a5-gqK">
+                                                        <rect key="frame" x="0.0" y="20.333333333333339" width="165" height="45.666666666666657"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="38"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="krK-pm-QxC">
-                                                        <rect key="frame" x="0.0" y="68.333333333333343" width="165" height="100"/>
+                                                        <rect key="frame" x="0.0" y="66" width="165" height="100"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="165" id="NjM-Wq-lGT"/>
@@ -46,20 +46,28 @@
                                                         </constraints>
                                                     </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="nK7-mv-fun">
-                                                        <rect key="frame" x="0.0" y="168.33333333333331" width="165" height="20.333333333333343"/>
+                                                        <rect key="frame" x="0.0" y="166" width="165" height="34.333333333333343"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lap" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AF6-x8-eoN">
-                                                                <rect key="frame" x="0.0" y="0.0" width="82.666666666666671" height="20.333333333333332"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uYI-IE-k9k">
-                                                                <rect key="frame" x="82.666666666666657" y="0.0" width="82.333333333333343" height="20.333333333333332"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <nil key="textColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="cGY-rx-08d">
+                                                                <rect key="frame" x="0.0" y="0.0" width="82.666666666666671" height="34.333333333333336"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <color key="tintColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <state key="normal" title="Button"/>
+                                                                <buttonConfiguration key="configuration" style="plain" title="Lap"/>
+                                                                <connections>
+                                                                    <action selector="leftButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jyI-kW-GRA"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="pIG-6v-K1b">
+                                                                <rect key="frame" x="82.666666666666686" y="0.0" width="82.333333333333314" height="34.333333333333336"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <color key="tintColor" systemColor="systemGreenColor"/>
+                                                                <state key="normal" title="Button"/>
+                                                                <buttonConfiguration key="configuration" style="plain" title="Start"/>
+                                                                <connections>
+                                                                    <action selector="rightButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7Tu-GC-Xcj"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                     </stackView>
                                                 </subviews>
@@ -99,6 +107,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Stopwatch" id="i0A-Fd-wHB"/>
+                    <connections>
+                        <outlet property="lapTimeLabel" destination="NDz-a1-OQn" id="uyQ-pU-jL0"/>
+                        <outlet property="leftButton" destination="cGY-rx-08d" id="Kkt-Fw-O1o"/>
+                        <outlet property="rightButton" destination="pIG-6v-K1b" id="UTk-Ez-ynh"/>
+                        <outlet property="totalTimeLabel" destination="c7y-a5-gqK" id="GuQ-Zj-i0F"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -126,6 +140,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
