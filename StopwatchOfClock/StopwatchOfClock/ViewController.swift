@@ -15,6 +15,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var leftButton: UIButton!        // Lap <-> Reset Button
     @IBOutlet weak var rightButton: UIButton!       // Start <-> Stop Button
     
+    @IBOutlet weak var lapTableView: UITableView!
+    
     var leftButtonState: ButtonState!
     var rightButtonState: ButtonState!
     
@@ -32,6 +34,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        lapTableView.dataSource = self
         
         // 앱 실행 시 버튼 상태 설정
         rightButtonState = .start
@@ -56,6 +60,8 @@ class ViewController: UIViewController {
             leftButton.setTitle("Lap", for: .normal)
             leftButtonState = .lap
             
+            lapTableView.reloadData()
+            
         } else { // Lap
             // Lap 초기화
             lapMilliseconds = 0
@@ -63,7 +69,8 @@ class ViewController: UIViewController {
             
             // 기록 추가
             lapArray.append(totalTimeLabel.text!)
-            print(lapArray)
+            
+            lapTableView.reloadData()
         }
     }
     
@@ -80,7 +87,7 @@ class ViewController: UIViewController {
             // Timer Start
             if isTimerRunning == false {
                 startTime = Date.timeIntervalSinceReferenceDate - TimeInterval(count)
-                timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateTimeLabel), userInfo: nil, repeats: true)
+                timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateTotalTimeLabel), userInfo: nil, repeats: true)
                 lapTimer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateLapTimeLabel), userInfo: nil, repeats: true)
                 isTimerRunning = true
                 
@@ -117,7 +124,7 @@ class ViewController: UIViewController {
         }
     }
     
-    @objc func updateTimeLabel() {
+    @objc func updateTotalTimeLabel() {
         milliseconds += 1
         let seconds = Double(milliseconds) / 100.0
         let minutes = Int(seconds / 60)
@@ -130,7 +137,27 @@ class ViewController: UIViewController {
         let minutes = Int(seconds / 60)
         lapTimeLabel.text = String(format: "%02d:%05.2f", minutes, seconds)
     }
+    
+}
 
+extension ViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return lapArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let lapCell = lapTableView.dequeueReusableCell(withIdentifier: "LapTableViewCell", for: indexPath) as! LapTableViewCell
+        lapCell.cellLapNumberLabel.text = "Lap \(lapArray.count - indexPath.row)"
+        lapCell.cellLapTimeLabel.text = lapArray[lapArray.count - 1 - indexPath.row]
+        return lapCell
+    }
+    
+}
+
+class LapTableViewCell: UITableViewCell {
+    @IBOutlet weak var cellLapNumberLabel: UILabel!
+    @IBOutlet weak var cellLapTimeLabel: UILabel!
 }
 
 enum ButtonState {
