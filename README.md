@@ -19,3 +19,6 @@
     - Lap Timer Label 기능 추가
 2. Lap TableView
     - 버튼 이벤트에 따라 TableView reloadData() 적용
+
+### 실행화면
+<img src="./stopwatch_step1.gif" width="300" />
