@@ -63,12 +63,12 @@ class ViewController: UIViewController {
             lapTableView.reloadData()
             
         } else { // Lap
+            // 기록 추가
+            lapArray.append(lapTimeLabel.text!)
+            
             // Lap 초기화
             lapMilliseconds = 0
             lapTimeLabel.text = "00:00.00"
-            
-            // 기록 추가
-            lapArray.append(totalTimeLabel.text!)
             
             lapTableView.reloadData()
         }
