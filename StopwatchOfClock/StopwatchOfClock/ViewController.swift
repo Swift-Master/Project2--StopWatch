@@ -36,7 +36,6 @@ class ViewController: UIViewController {
         // 앱 실행 시 버튼 상태 설정
         rightButtonState = .start
         leftButtonState = .lap
-        
     }
     
     // 왼쪽 버튼 이벤트
@@ -44,6 +43,7 @@ class ViewController: UIViewController {
         if leftButtonState == .reset {
             // 초기화
             milliseconds = 0
+            lapMilliseconds = 0
             count = 0
             startTime = 0
             pauseTime = 0
@@ -52,11 +52,16 @@ class ViewController: UIViewController {
             lapTimeLabel.text = "00:00.00"
             totalTimeLabel.text = "00:00.00"
             
-        } else {
-            // Lap
+            // Reset -> Lap
+            leftButton.setTitle("Lap", for: .normal)
+            leftButtonState = .lap
+            
+        } else { // Lap
+            // Lap 초기화
             lapMilliseconds = 0
             lapTimeLabel.text = "00:00.00"
             
+            // 기록 추가
             lapArray.append(totalTimeLabel.text!)
             print(lapArray)
         }
