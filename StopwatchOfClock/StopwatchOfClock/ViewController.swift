@@ -37,9 +37,20 @@ class ViewController: UIViewController {
         
         lapTableView.dataSource = self
         
+        setButton()
+    }
+    
+    func setButton() {
         // 앱 실행 시 버튼 상태 설정
         rightButtonState = .start
         leftButtonState = .lap
+        
+        leftButton.setTitle("Lap", for: .normal)
+        rightButton.setTitle("Start", for: .normal)
+        rightButton.setTitleColor(.systemGreen, for: .normal)
+        
+        // Lap 버튼 비활성화
+        leftButton.isEnabled = false
     }
     
     // 왼쪽 버튼 이벤트
@@ -59,6 +70,7 @@ class ViewController: UIViewController {
             // Reset -> Lap
             leftButton.setTitle("Lap", for: .normal)
             leftButtonState = .lap
+            leftButton.isEnabled = false
             
             lapTableView.reloadData()
             
@@ -98,6 +110,7 @@ class ViewController: UIViewController {
                 }
             }
             
+            leftButton.isEnabled = true
             
         } else {
             // 상태 변경
