@@ -21,4 +21,4 @@
     - 버튼 이벤트에 따라 TableView reloadData() 적용
 
 ### 실행화면
-<img src="./stopwatch_step1.gif" width="300" />
+<img src="./StopWatch_step1.gif" width="300" />
