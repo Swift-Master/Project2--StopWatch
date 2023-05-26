@@ -1,4 +1,4 @@
-## 프로젝트 2 : GoodAsOldPhones
+## 프로젝트 2 : StopWatch
 
 ### [20230502]
 1. 상단 Title
