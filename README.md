@@ -1,36 +1,24 @@
-## 프로젝트 2 : GoodAsOldPhones
+## 프로젝트 2 : StopWatch
 
-ios 기본 제공 시계앱의 스톱워치를 구현하며 연습해보는 앱입니다.
+### [20230502]
+1. 상단 Title
+    - Navigation Item으로 Title 설정
+2. 전체 화면 분할
+    - StackView를 사용하여 상단 View, 하단 TableView 2분할로 배치
+3. 상단 화면 설계
+    - Vertical StackView안에 Label, View, Horizontal StackView 사용
 
-이 앱의 레퍼런스는 [soapyigu의 Swift-30-Projects](https://github.com/soapyigu/Swift-30-Projects/tree/master/Project%2002%20-%20Stopwatch)입니다.
+### [20230504]
+1. Timer 적용 - Total
+    - Timer()를 사용하여 Total Timer Lebel 변경
+2. 버튼 이벤트
+    - 왼쪽에 있는 Lap -> Reset 버튼, 오른쪽에 있는 Start -> Stop 버튼 이벤트 기능 추가
 
-기본 기능을 모두 구현했다면, 디자인 및 추가 기능 구현은 자유롭게 해주세요.
+### [20230509]
+1. Timer 적용 - Lap
+    - Lap Timer Label 기능 추가
+2. Lap TableView
+    - 버튼 이벤트에 따라 TableView reloadData() 적용
 
-## 가이드
-
-영상 가이드는 [코드스쿼드 pr연습](https://www.youtube.com/watch?v=lFinZfu3QO0)을 참조해주세요.
-
-1. 본인 이름으로 브랜치(ex: PAKA)를 생성한 후, 자신의 레포로 fork해주세요.
-
-2. fork 한 레포에서 기능 또는 화면 단위로 새 브랜치(ex: pr1)를 생성 후 작업 및 커밋합니다. 
-
-3. 커밋했던 브랜치(pr1)에서 자신의 이름 브랜치(PAKA)로 PR을 올려주세요.
-
-4. 코드 리뷰를 받고 모든 수정사항을 반영한 후 `squash and merge` 옵션으로 자신의 브랜치에 merge해주세요.
-
-5. merge했던 브랜치(pr1)에서 fork한 레포의 main 브랜치로 checkout후 해당 브랜치(pr1)를 삭제합니다.
-
-6. 다음 명령어들을 순차적으로 실행합니다.
-
-```
-    git remote add upstream https://github.com/Swift-Master/Project1-GoodAsOldPhones
-    
-    git fetch upstream `본인의 브랜치명(ex:PAKA)`
-    
-    git rebase upstream `upstream/본인의브랜치명(ex:PAKA)`
-```
-
-7. 2번으로 돌아가 새로운 작업을 반복합니다.
-
-## 실제 화면
-![Stopwatch](./Stopwatch.gif)
+### 실행화면
+<img src="./StopWatch_step1.gif" width="300" />
